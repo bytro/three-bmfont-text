@@ -1,8 +1,7 @@
 import createLayout from 'layout-bmfont-text';
 import type { Glyph, TextLayout, TextOptions } from 'layout-bmfont-text-types';
 import createQuadElements from 'quad-indices';
-import { Box3, BufferGeometry, Sphere } from 'three';
-import { attr, index } from 'three-buffer-vertex-data';
+import { Box3, BufferAttribute, BufferGeometry, Sphere } from 'three';
 
 import { computeBox, computeSphere } from './lib/utils';
 import { computePositions, computeUvs } from './lib/vertices';
@@ -54,14 +53,14 @@ export class TextGeometry extends BufferGeometry {
         });
 
         // update vertex data
-        index(this, indices, 1, 'uint16');
-        attr(this, 'position', positions, 2);
-        attr(this, 'uv', uvs, 2);
+        this.setIndex(indices)
+        this.setAttribute('position', new BufferAttribute(positions, 2))
+        this.setAttribute('uv', new BufferAttribute(uvs, 2))
 
         // update multipage data
         if ('page' in this.attributes) {
             // disable multipage rendering
-            this.removeAttribute('page');
+            this.deleteAttribute('page');
         }
     }
 

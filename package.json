@@ -19,8 +19,7 @@
   },
   "dependencies": {
     "layout-bmfont-text": "^1.2.0",
-    "quad-indices": "^2.0.1",
-    "three-buffer-vertex-data": "bytro/three-buffer-vertex-data#v1.2.0"
+    "quad-indices": "^2.0.1"
   },
   "devDependencies": {
     "array-shuffle": "^1.0.1",
