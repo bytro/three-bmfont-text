@@ -36,7 +36,8 @@
     "three": "^0.116.1",
     "three-orbit-viewer": "^69.2.9",
     "three-vignette-background": "^1.0.2",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "typings": "github:bytro/typings#c6030cfb216bc283c402c354522648f5ef7b498c"
   },
   "scripts": {
     "dist": "microbundle --target web --external three",
