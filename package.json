@@ -1,6 +1,6 @@
 {
   "name": "three-bmfont-text",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "renders BMFont files in ThreeJS with word-wrapping",
   "source": "index.ts",
   "main": "dist/three-bmfont-text.js",

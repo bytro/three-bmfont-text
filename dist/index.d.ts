@@ -5,6 +5,7 @@ import { BufferGeometry } from 'three';
  * Port of https://github.com/Jam3/three-bmfont-text/
  */
 export declare class TextGeometry extends BufferGeometry {
+    readonly options: TextOptions;
     layout: TextLayout;
     visibleGlyphs: Glyph[];
     constructor(opt: TextOptions);
