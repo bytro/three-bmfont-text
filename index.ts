@@ -10,18 +10,27 @@ import { computePositions, computeUvs } from './lib/vertices';
  * Port of https://github.com/Jam3/three-bmfont-text/
  */
 export class TextGeometry extends BufferGeometry {
+    public readonly options: TextOptions;
     public layout: TextLayout;
     public visibleGlyphs: Glyph[];
 
     constructor(opt: TextOptions) {
         super();
+
+        // use these as default values for any subsequent calls to update()
+        this.options = { ...opt };
+
         this.update(opt);
     }
 
     update(opt: TextOptions): void {
+        // use constructor defaults
+        opt = { ...this.options, ...opt };
+
         if (!opt.font) {
             throw new TypeError('must specify a { font } in options');
         }
+
         this.layout = createLayout(opt);
 
         // get vec2 texcoords
