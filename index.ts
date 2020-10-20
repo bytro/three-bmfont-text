@@ -53,7 +53,7 @@ export class TextGeometry extends BufferGeometry {
         });
 
         // update vertex data
-        this.setIndex(indices)
+        this.setIndex(new BufferAttribute(indices, 1));
         this.setAttribute('position', new BufferAttribute(positions, 2))
         this.setAttribute('uv', new BufferAttribute(uvs, 2))
 
