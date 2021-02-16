@@ -1,4 +1,4 @@
-import type { Glyph } from 'layout-bmfont-text-types';
+import type { Glyph } from 'layout-bmfont-text';
 
 export function computePositions(glyphs: Glyph[]): ArrayLike<number> {
     const positions = new Float32Array(glyphs.length * 4 * 2);

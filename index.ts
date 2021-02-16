@@ -1,20 +1,28 @@
-import createLayout from 'layout-bmfont-text';
-import type { Glyph, TextLayout, TextOptions } from 'layout-bmfont-text-types';
+import { default as createLayout, Glyph, TextLayout, TextOptions } from 'layout-bmfont-text';
 import createQuadElements from 'quad-indices';
 import { Box3, BufferAttribute, BufferGeometry, Sphere } from 'three';
 
 import { computeBox, computeSphere } from './lib/utils';
 import { computePositions, computeUvs } from './lib/vertices';
 
+export * from 'layout-bmfont-text';
+
+export interface TextGeometryOptions extends TextOptions {
+    /** whether the texture will be Y-flipped (default true) */
+    flipY?: boolean;
+    /** whether to construct this geometry with an extra buffer containing page IDs. This is necessary for multi-texture fonts (default false) */
+    multipage?: boolean;
+}
+
 /**
  * Port of https://github.com/Jam3/three-bmfont-text/
  */
 export class TextGeometry extends BufferGeometry {
-    public readonly options: TextOptions;
+    public readonly options: TextGeometryOptions;
     public layout: TextLayout;
     public visibleGlyphs: Glyph[];
 
-    constructor(opt: TextOptions) {
+    constructor(opt: TextGeometryOptions) {
         super();
 
         // use these as default values for any subsequent calls to update()
@@ -23,7 +31,7 @@ export class TextGeometry extends BufferGeometry {
         this.update(opt);
     }
 
-    update(opt: TextOptions): void {
+    update(opt: TextGeometryOptions) {
         // use constructor defaults
         opt = { ...this.options, ...opt };
 
@@ -44,10 +52,7 @@ export class TextGeometry extends BufferGeometry {
         const texHeight = font.common.scaleH;
 
         // get visible glyphs
-        const glyphs = this.layout.glyphs.filter(glyph => {
-            const bitmap = glyph.data;
-            return bitmap.width * bitmap.height > 0;
-        });
+        const glyphs = this.layout.glyphs.filter(({ data }) => data.width * data.height > 0);
 
         // provide visible glyphs for convenience
         this.visibleGlyphs = glyphs;

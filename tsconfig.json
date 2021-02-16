@@ -6,7 +6,7 @@
         "esModuleInterop": true,
 
         "declaration": true,
-        "typeRoots": [ "node_modules/typings"],
+        "typeRoots": ["node_modules/typings"],
         "sourceMap": true,
         "outDir": "dist",
 
